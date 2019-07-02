@@ -15,7 +15,19 @@
 </ol>
 
 <h2>초한지</h2>
-<audio controls>
-  <source src="http://wstrotu.ebs.co.kr/ebsvod/cul/2012/bp0phpk0000000048/m4a/20120923_110003_be.m4a?key=f494dd183c33df6b8472d4539ead62f2df8fd5bf.1561467858" controls>
-</audio>
+<script>
+  input.onchange = function(e){
+  var sound = document.getElementById('sound');
+  sound.src = URL.createObjectURL(this.files[0]);
+  // not really needed in this exact case, but since it is really important in other cases,
+  // don't forget to revoke the blobURI when you don't need it
+  sound.onend = function(e) {
+    URL.revokeObjectURL(this.src);
+  }
+}
+    </script>
+<input type="file" id="input"/>
+    
+<audio id="sound" controls></audio>
+    
 </body>
